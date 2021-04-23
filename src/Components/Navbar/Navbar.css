@@ -1,0 +1,25 @@
+.Navbar {
+  background-color: #f8fbfc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 55px;
+  color: gray;
+  position: fixed;
+  border-bottom: 1px solid rgb(224, 221, 221);
+}
+.Logo {
+  margin-left: 25px;
+}
+.Nav_items ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 200px;
+  list-style: none;
+}
+.Nav_items li a {
+  text-decoration: none;
+  color: inherit;
+}
