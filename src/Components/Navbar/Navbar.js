@@ -1,25 +1,40 @@
 import React from "react";
-import "./Navbar.css";
 
 const navbar = (props) => {
   return (
-    <div className="Navbar">
-      <div className="Logo">
-        <h3>ROMATO</h3>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand mx-3" href="/#">
+          ROMATO
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
       </div>
-      <div className="Nav_items">
-        <nav>
-          <ul>
-            <li>
-              <a href="/">log in</a>
-            </li>
-            <li>
-              <a href="/">sign in</a>
-            </li>
-          </ul>
-        </nav>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 px-3 text-dark">
+          <li class="nav-item px-3">
+            <a class="nav-link text-dark" aria-current="page" href="/#">
+              LogIn
+            </a>
+          </li>
+          <li class="nav-item px-3">
+            <a class="nav-link text-dark" href="/#">
+              SignUp
+            </a>
+          </li>
+        </ul>
       </div>
-    </div>
+    </nav>
   );
 };
+
 export default navbar;

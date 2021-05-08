@@ -1,40 +1,29 @@
-import React from "react";
+import React, { Component } from "react";
 import NeilsCard from "./NeilsCard/NeilsCard";
-import "./NeilsKitchen.css";
-import Navbar from "../Navbar/Navbar";
+import { connect } from "react-redux";
 
-const neilsKitchen = () => {
-  return (
-    <div className="NeilsKitchen">
-      <Navbar />
-      <div className="cont">
+class NeilsKitchen extends Component {
+  render() {
+    const { searchData } = this.props;
+    console.log(searchData);
+    const card = searchData.map((item) => {
+      return (
         <NeilsCard
-          source={"https://eloquent-murdock-ac6e11.netlify.app/Image/dal1.png"}
-          text={"Chicken Lollipop"}
-          price={"Rs 145"}
+          key={item.id}
+          source={item.img}
+          text={item.name}
+          price={item.price}
         />
-        <NeilsCard
-          source={"https://eloquent-murdock-ac6e11.netlify.app/Image/dal2.png"}
-          text={"Kadhai Panner"}
-          price={"Rs 145"}
-        />
-        <NeilsCard
-          source={"https://eloquent-murdock-ac6e11.netlify.app/Image/dal3.png"}
-          text={"Mixed Hakka Noddles"}
-          price={"Rs 145"}
-        />
-        <NeilsCard
-          source={"https://eloquent-murdock-ac6e11.netlify.app/Image/dal2.png"}
-          text={"Chicken Roll"}
-          price={"Rs 145"}
-        />
-        <NeilsCard
-          source={"https://eloquent-murdock-ac6e11.netlify.app/Image/dal3.png"}
-          text={"Chicken Kadhai"}
-          price={"Rs 145"}
-        />
+      );
+    });
+    return (
+      <div className="container d-flex justify-content-around align-items-center flex-wrap">
+        {card}
       </div>
-    </div>
-  );
-};
-export default neilsKitchen;
+    );
+  }
+}
+const mapStateToProps = (state) => ({
+  searchData: state.searchData,
+});
+export default connect(mapStateToProps)(NeilsKitchen);

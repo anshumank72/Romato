@@ -1,12 +1,11 @@
 import React from "react";
 import Card from "./Card/Card";
-import "./Cards.css";
 
 //photo = [online.webp, nightlife.webp, meal.webp, Gold.wep];
 
 const cards = (props) => {
   return (
-    <div className="Cards">
+    <div className="py-5 d-flex justify-content-around">
       <Card
         text={"Order Food Online"}
         source="https://b.zmtcdn.com/webFrontend/64dffaa58ffa55a377cdf42b6a690e721585809275.png"

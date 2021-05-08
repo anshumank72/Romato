@@ -1,11 +1,12 @@
 import React from "react";
-import "./Card.css";
 
 const card = (props) => {
   return (
-    <div className="Card">
-      <img src={props.source} />
-      <h2>{props.text}</h2>
+    <div class="card" style={{ width: "18rem" }}>
+      <img src={props.source} class="card-img-top" alt={props.text} />
+      <div class="card-body text-center fs-4">
+        <p class="card-text">{props.text}</p>
+      </div>
     </div>
   );
 };
