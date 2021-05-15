@@ -4,8 +4,7 @@ import Homes from "./Homes";
 import NeilsKitchen from "../Components/NeilsKitchen/NeilsKitchen";
 import NeilsProductDetail from "../Components/NeilsKitchen/NeilsCard/NeilsProductDetail/NeilsProductDetail";
 import Login from "../Components/Login/Login";
-import Logout from "../Components/Login/Logout";
-import Admin from "../Components/Login/Admin";
+import Signup from "../Components/Login/Signup";
 
 class Home extends Component {
   render() {
@@ -16,8 +15,7 @@ class Home extends Component {
           <Route path="/neilskitchen" exact component={NeilsKitchen} />
           <Route path="/neilskitchen/:id" component={NeilsProductDetail} />
           <Route path="/login" component={Login} />
-          <Route path="/admin" component={Admin} />
-          <Route path="/signup" component={Logout} />
+          <Route path="/signup" component={Signup} />
         </Switch>
       </div>
     );

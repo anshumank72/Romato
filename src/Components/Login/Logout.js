@@ -4,13 +4,12 @@ import { Link } from "react-router-dom";
 class Logout extends Component {
   constructor(props) {
     super(props);
-    localStorage.removeItem("token");
   }
   render() {
     return (
       <div>
-        <h1>Logged out</h1>
-        <Link to="/login">Loginagain</Link>
+        <h1>welcome anshuman in romato world</h1>
+        <button>Logout</button>
       </div>
     );
   }

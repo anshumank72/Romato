@@ -1,83 +1,77 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import Logout from "./Logout";
 
 class Login extends Component {
   constructor(props) {
     super(props);
-    const token = localStorage.getItem("token");
-    let islogged = true;
-    if (token === null) {
-      islogged: false;
-    }
     this.state = {
-      username: "",
-      password: "",
-      islogged,
+      usernamelog: "",
+      passwordlog: "",
+      flag: false,
+      home: true,
     };
-
-    this.changeHandler = this.changeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
-  }
-
-  changeHandler(e) {
-    this.setState({ [e.target.name]: e.target.value });
   }
 
   submitHandler(e) {
     e.preventDefault();
-    const { username, password } = this.state;
-    if (username === "admin" && password === "password") {
-      localStorage.setItem("token", "dsvdfjvbdkfjdl");
-      this.setState({ islogged: true });
+    let user = JSON.parse(localStorage.getItem("username"));
+    let pass = JSON.parse(localStorage.getItem("password"));
+    if (!this.state.usernamelog || !this.state.passwordlog) {
+      this.setState({ flag: !this.state.flag });
+      console.log("empty");
+    } else if (
+      this.state.usernamelog != user ||
+      this.state.passwordlog != pass
+    ) {
+      this.setState({ flag: !this.state.flag });
+    } else {
+      this.setState({ home: !this.state.home, flag: !this.state.flag });
     }
   }
   render() {
-    if (this.state.islogged) {
-      return <Redirect to="/Admin" />;
-    }
     return (
       <div
         className="container"
         style={{ maxWidth: "500px", marginTop: "150px" }}
       >
-        <form className="position-relative" onSubmit={this.submitHandler}>
-          <div class="row mb-3">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">
-              username
-            </label>
-            <div class="col-sm-10">
+        {this.state.home ? (
+          <form onSubmit={this.submitHandler}>
+            <h3>LogIn</h3>
+            <div className="form-group mt-3">
+              <label>username</label>
               <input
                 type="text"
-                class="form-control"
-                name="username"
-                value={this.state.username}
-                placeholder="username"
-                onChange={this.changeHandler}
+                className="form-control"
+                placeholder="Enter username"
+                onChange={(e) => this.setState({ usernamelog: e.target.value })}
               />
             </div>
-          </div>
-          <div class="row mb-3">
-            <label for="inputPassword3" class="col-sm-2 col-form-label">
-              Password
-            </label>
-            <div class="col-sm-10">
+
+            <div className="form-group mt-3">
+              <label>Password</label>
               <input
                 type="password"
-                class="form-control"
-                placeholder="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.changeHandler}
+                className="form-control"
+                placeholder="Enter password"
+                onChange={(e) => this.setState({ passwordlog: e.target.value })}
               />
             </div>
-          </div>
-          <button
-            type="submit"
-            class="btn btn-primary text-center position-absolute start-50 translate-middle mt-5"
-          >
-            LogIn
-          </button>
-        </form>
+
+            <button
+              type="submit"
+              className="btn btn-dark btn-lg btn-block mt-3"
+            >
+              Login
+            </button>
+
+            {this.state.flag && (
+              <p className="mt-3">Fill correct Info else keep trying.</p>
+            )}
+          </form>
+        ) : (
+          <Logout />
+        )}
       </div>
     );
   }
