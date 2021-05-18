@@ -15,9 +15,11 @@ class Signup extends Component {
 
   handleFormSubmit(e) {
     e.preventDefault();
-    localStorage.setItem("username", JSON.stringify(this.state.username));
-    localStorage.setItem("password", JSON.stringify(this.state.password));
-    console.log("saved");
+    let item = { ...this.state };
+    //console.log(item);
+
+    localStorage.setItem("signup-info", JSON.stringify(item));
+    //console.log("saved");
     this.setState({ loggedin: !this.state.loggedin });
   }
   handleClick() {

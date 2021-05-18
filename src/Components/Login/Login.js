@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import Logout from "./Logout";
-
+import Homes from "../../Container/Homes";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -15,14 +14,16 @@ class Login extends Component {
 
   submitHandler(e) {
     e.preventDefault();
-    let user = JSON.parse(localStorage.getItem("username"));
-    let pass = JSON.parse(localStorage.getItem("password"));
+
+    let user = JSON.parse(localStorage.getItem("signup-info"));
+    localStorage.setItem("login-info", JSON.stringify(user));
+    //let pass = JSON.parse(localStorage.getItem("user-info.password"));
     if (!this.state.usernamelog || !this.state.passwordlog) {
       this.setState({ flag: !this.state.flag });
       console.log("empty");
     } else if (
-      this.state.usernamelog != user ||
-      this.state.passwordlog != pass
+      this.state.usernamelog != user.username ||
+      this.state.passwordlog != user.password
     ) {
       this.setState({ flag: !this.state.flag });
     } else {
@@ -70,7 +71,7 @@ class Login extends Component {
             )}
           </form>
         ) : (
-          <Logout />
+          <Homes />
         )}
       </div>
     );
