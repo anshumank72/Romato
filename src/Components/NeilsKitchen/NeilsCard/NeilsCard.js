@@ -10,11 +10,13 @@ const neilsCard = (props) => {
         <button
           className="btn m-0"
           style={{ width: "100%", backgroundColor: "#17a2b8" }}
+          onClick={props.cartItemHandler}
         >
-          Meals Detail
+          Add to cart
         </button>
       </div>
     </div>
   );
 };
+
 export default neilsCard;

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { signUp } from "../../Redux/Action";
 import Login from "./Login";
+import { connect } from "react-redux";
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -7,29 +9,25 @@ class Signup extends Component {
       username: "",
       email: "",
       password: "",
-      loggedin: true,
     };
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   handleFormSubmit(e) {
     e.preventDefault();
+    let { isLogged, signUp } = this.props;
     let item = { ...this.state };
     //console.log(item);
 
     localStorage.setItem("signup-info", JSON.stringify(item));
     //console.log("saved");
-    this.setState({ loggedin: !this.state.loggedin });
-  }
-  handleClick() {
-    this.setState({ loggedin: !this.state.loggedin });
+    signUp(!isLogged);
   }
 
   render() {
     return (
       <div>
-        {this.state.loggedin ? (
+        {this.props.isLogged ? (
           <form
             onSubmit={this.handleFormSubmit}
             style={{ maxWidth: "500px", margin: "30px auto" }}
@@ -72,12 +70,6 @@ class Signup extends Component {
             >
               Register
             </button>
-            <p className="forgot-password text-right mt-3">
-              Already registered{" "}
-              <a href="#" onClick={this.handleClick}>
-                log in?
-              </a>
-            </p>
           </form>
         ) : (
           <Login />
@@ -86,4 +78,10 @@ class Signup extends Component {
     );
   }
 }
-export default Signup;
+const mapStateToProps = (state) => ({
+  isLogged: state.isLogged,
+});
+const mapDispatchToProps = (dispatch) => ({
+  signUp: (payload) => dispatch(signUp(payload)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

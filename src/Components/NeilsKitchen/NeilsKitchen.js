@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import NeilsCard from "./NeilsCard/NeilsCard";
 import { connect } from "react-redux";
-
+import { cartItem } from "../../Redux/Action";
 class NeilsKitchen extends Component {
   render() {
-    const { searchData } = this.props;
-    console.log(searchData);
+    const { searchData, cartItem } = this.props;
+    //console.log(searchData);
     const card = searchData.map((item) => {
       return (
         <NeilsCard
@@ -13,6 +13,7 @@ class NeilsKitchen extends Component {
           source={item.img}
           text={item.name}
           price={item.price}
+          cartItemHandler={() => cartItem(item)}
         />
       );
     });
@@ -26,4 +27,7 @@ class NeilsKitchen extends Component {
 const mapStateToProps = (state) => ({
   searchData: state.searchData,
 });
-export default connect(mapStateToProps)(NeilsKitchen);
+const mapDispatchToProps = (dispatch) => ({
+  cartItem: (payload) => dispatch(cartItem(payload)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(NeilsKitchen);

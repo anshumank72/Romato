@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Homes from "../../Container/Homes";
+import { connect } from "react-redux";
+import { logIn } from "../../Redux/Action";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -14,20 +16,22 @@ class Login extends Component {
 
   submitHandler(e) {
     e.preventDefault();
+    let { flag, home, logIn } = this.props;
 
     let user = JSON.parse(localStorage.getItem("signup-info"));
     localStorage.setItem("login-info", JSON.stringify(user));
     //let pass = JSON.parse(localStorage.getItem("user-info.password"));
     if (!this.state.usernamelog || !this.state.passwordlog) {
-      this.setState({ flag: !this.state.flag });
+      logIn(!flag);
       console.log("empty");
     } else if (
       this.state.usernamelog != user.username ||
       this.state.passwordlog != user.password
     ) {
-      this.setState({ flag: !this.state.flag });
+      logIn(!flag);
     } else {
-      this.setState({ home: !this.state.home, flag: !this.state.flag });
+      logIn(!flag);
+      logIn(!home);
     }
   }
   render() {
@@ -36,7 +40,7 @@ class Login extends Component {
         className="container"
         style={{ maxWidth: "500px", marginTop: "150px" }}
       >
-        {this.state.home ? (
+        {this.props.home ? (
           <form onSubmit={this.submitHandler}>
             <h3>LogIn</h3>
             <div className="form-group mt-3">
@@ -66,7 +70,7 @@ class Login extends Component {
               Login
             </button>
 
-            {this.state.flag && (
+            {this.props.flag && (
               <p className="mt-3">Fill correct Info else keep trying.</p>
             )}
           </form>
@@ -77,5 +81,12 @@ class Login extends Component {
     );
   }
 }
+const mapStateToProps = (state) => ({
+  flag: state.flag,
+  home: state.home,
+});
+const mapDispatchToProps = (dispatch) => ({
+  logIn: (payload) => dispatch(logIn(payload)),
+});
 
-export default Login;
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

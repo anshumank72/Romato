@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { connect } from "react-redux";
 
 const navbar = (props) => {
   return (
@@ -32,10 +35,34 @@ const navbar = (props) => {
               SignUp
             </Link>
           </li>
+          <li class="nav-item px-3">
+            <Link class="nav-link text-dark" to="/cart">
+              <FontAwesomeIcon icon={faCartPlus} />
+            </Link>
+          </li>
         </ul>
+        <div
+          className="bg-dark"
+          style={{
+            fontSize: "12px",
+            color: "white",
+            borderRadius: "50%",
+            paddingLeft: "5.5px",
+            width: "17px",
+            height: "17px",
+            position: "absolute",
+            right: "33px",
+            top: "10px",
+          }}
+        >
+          {props.cartData.length}
+        </div>
       </div>
     </nav>
   );
 };
+const mapStateToProps = (state) => ({
+  cartData: state.cartData,
+});
 
-export default navbar;
+export default connect(mapStateToProps)(navbar);

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { searchRestra } from "../../Redux/Action";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 class Banner extends Component {
   state = {
@@ -50,8 +52,8 @@ class Banner extends Component {
               className="input-group-text m-0 p-0 border-0 text-decoration-none"
               onClick={() => searchRestra(this.state.value)}
             >
-              <button className="btn btn-light" type="submit">
-                Meals for you
+              <button className="btn btn-light p-3" type="submit">
+                <FontAwesomeIcon icon={faSearch} />
               </button>
             </Link>
           </div>

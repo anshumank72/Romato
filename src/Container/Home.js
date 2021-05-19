@@ -6,7 +6,6 @@ import NeilsProductDetail from "../Components/NeilsKitchen/NeilsCard/NeilsProduc
 import Login from "../Components/Login/Login";
 import Signup from "../Components/Login/Signup";
 import Protected from "../Components/Protected";
-import Logout from "../Components/Login/Logout";
 
 class Home extends Component {
   render() {
@@ -18,6 +17,7 @@ class Home extends Component {
           <Route path="/neilskitchen/:id" component={NeilsProductDetail} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
+          <Route path="/cart" component={NeilsProductDetail} />
         </Switch>
       </div>
     );
