@@ -8,8 +8,6 @@ class Login extends Component {
     this.state = {
       usernamelog: "",
       passwordlog: "",
-      flag: false,
-      home: true,
     };
     this.submitHandler = this.submitHandler.bind(this);
   }
